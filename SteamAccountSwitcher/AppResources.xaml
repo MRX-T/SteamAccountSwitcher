@@ -1,0 +1,45 @@
+<ResourceDictionary x:Class="SteamAccountSwitcher.AppResources"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SteamAccountSwitcher">
+	<local:MyTaskbarIcon x:Key="TrayIcon"
+	                     IconSource="SteamAccountSwitcher.ico"
+	                     ToolTipText="Steam Account Switcher"
+	                     MenuActivation="LeftOrRightClick">
+		<local:MyTaskbarIcon.ContextMenu>
+			<ContextMenu>
+				<ContextMenu.Resources>
+					<Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+						<EventSetter Event="Click" Handler="MenuItem_Click" />
+
+						<Setter Property="Padding" Value="2,4,2,4" />
+
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Converter={local:ObjectToTypeConverter}}" Value="{x:Type local:SteamAccount}">
+								<Setter Property="CommandParameter" Value="{Binding}" />
+							</DataTrigger>
+
+							<DataTrigger Binding="{Binding Converter={local:ObjectToTypeConverter}}" Value="{x:Type local:SteamAccount}">
+								<Setter Property="Icon" Value="{Binding ID, Converter={local:SteamIdToAvatarConverter}, IsAsync=True}" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ContextMenu.Resources>
+
+				<ContextMenu.ItemsSource>
+					<CompositeCollection>
+						<CollectionContainer Collection="{x:Static local:SteamClient.Accounts}" />
+
+						<Separator />
+
+						<MenuItem Header="_Add Account" CommandParameter="add-account" />
+
+						<MenuItem Header="_Options" CommandParameter="options" />
+
+						<MenuItem Header="E_xit" CommandParameter="exit" />
+					</CompositeCollection>
+				</ContextMenu.ItemsSource>
+			</ContextMenu>
+		</local:MyTaskbarIcon.ContextMenu>
+	</local:MyTaskbarIcon>
+</ResourceDictionary>
