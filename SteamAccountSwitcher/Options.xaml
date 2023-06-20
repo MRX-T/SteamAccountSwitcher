@@ -1,0 +1,113 @@
+<Window x:Class="SteamAccountSwitcher.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:SteamAccountSwitcher.Properties"
+        Title="Options"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Closed="Window_Closed">
+	<Grid Margin="12">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="24" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="12" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="12" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="12" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="12" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<TextBlock Grid.Row="0"
+			           Grid.Column="0"
+			           Text="Start with PC" />
+
+			<CheckBox Grid.Row="0"
+			          Grid.Column="2"
+			          IsChecked="{Binding RunOnStartup, Source={x:Static p:Settings.Default}}"
+			          ToolTip="Run this app after Windows restarts" />
+
+			<TextBlock Grid.Row="2"
+			           Grid.Column="0"
+			           Text="Show avatars" />
+
+			<CheckBox Grid.Row="2"
+			          Grid.Column="2"
+			          IsChecked="{Binding ShowAvatars, Source={x:Static p:Settings.Default}}"
+			          ToolTip="Show profile pictures in the menu" />
+
+			<TextBlock Grid.Row="4"
+			           Grid.Column="0"
+			           Text="Steam arguments" />
+
+			<TextBox Grid.Row="4"
+			         Grid.Column="2"
+			         Text="{Binding SteamArguments, Source={x:Static p:Settings.Default}}"
+			         ToolTip="Command-line arguments to launch Steam with"
+			         MinWidth="200" />
+
+			<TextBlock Grid.Row="6"
+			           Grid.Column="0"
+			           Text="Steam folder" />
+
+			<TextBox Grid.Row="6"
+			         Grid.Column="2"
+			         Text="{Binding SteamInstallDirectory, Source={x:Static p:Settings.Default}}"
+			         ToolTip="Where to look for steam.exe if not found automatically"
+			         MinWidth="200" />
+		</Grid>
+
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="6" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" MinWidth="48" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="6" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="23" />
+			</Grid.RowDefinitions>
+
+			<TextBlock Grid.Column="0" VerticalAlignment="Center">
+				<Hyperlink Click="LicensesHyperlink_Click">
+					Licenses...
+				</Hyperlink>
+			</TextBlock>
+
+			<TextBlock Grid.Column="2" VerticalAlignment="Center">
+				<Hyperlink Click="GitHubHyperlink_Click">
+					View on GitHub
+				</Hyperlink>
+			</TextBlock>
+
+			<Button Grid.Column="4"
+			        Content="OK"
+			        Click="OkButton_Click"
+			        Width="75"
+			        IsDefault="True" />
+
+			<Button Grid.Column="6"
+			        Content="Cancel"
+			        Width="75"
+			        Click="CancelButton_Click"
+			        IsCancel="True" />
+		</Grid>
+	</Grid>
+</Window>
