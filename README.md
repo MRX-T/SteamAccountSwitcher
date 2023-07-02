@@ -33,5 +33,3 @@ Windows 10 [version 1903](https://support.microsoft.com/en-us/windows/which-vers
 Looking for the old version? [Download v2.3.1 here](https://github.com/danielchalmers/SteamAccountSwitcher/releases/tag/v2.3.1).
 
 ![v2.3.1 Main window](https://user-images.githubusercontent.com/7112040/33782616-6809ccfc-dc27-11e7-8323-cf9771d89b9a.png)
-
-
